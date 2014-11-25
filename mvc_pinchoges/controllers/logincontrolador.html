@@ -1,0 +1,34 @@
+<html><h1>naskjdfbkjasfkjas</h1></html>
+<?php
+	echo 2;
+	//Llamada a la vista
+	require_once("views/iu_login.html");
+	
+	//Llamada al modelo
+	require_once("models/db_model.php");
+	
+	private $db_model;
+	
+	public function __construct(){
+	parent::__construct();
+		
+	$this->db_model = new db_model();
+		
+	
+	}
+
+	public function login(){
+		if(isset($POST["login"])){
+			if($this->db_model->loguear_invitado($_POST["login"], $_POST["pass"])){
+				$_SESSION["usuarioActual"]=$_POST["login"];
+			}
+		}else{
+			$errors = array();
+			$errors["general"] = "Nombre de usuario no válido";
+			
+		}
+	}	 
+
+	//Llamada a la vista
+
+?>
